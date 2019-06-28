@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { ISize } from '../helpers/TooltipHelper';
 
 @Component({
   selector: 'app-tooltip',
@@ -12,4 +13,20 @@ export class TooltipComponent implements OnInit {
   ngOnInit() {
   }
 
+  windowSize(): ISize {
+    return {
+      width: window.innerWidth,
+      height: window.innerHeight
+    };
+  }
+
+  @HostListener('window:resize')
+  onWindowResize(): void {
+    console.log('window resize');
+    console.log(this.windowSize());
+  }
+  @HostListener('window:scroll')
+  onWindowScroll(): void {
+    console.log('window scroll');
+  }
 }
