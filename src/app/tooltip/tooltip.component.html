@@ -1,3 +1,3 @@
-<div class="app-tooltip below" style="top: 0px; left: 0px;">
-	<div class="app-tooltip-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum nostrum a sed quasi expedita eos veniam ipsum voluptatem vitae quam sit consequuntur perspiciatis, dolorem officia recusandae, eveniet eaque quisquam similique?</div>
+<div [ngClass]="tooltipClassList()" [ngStyle]="bodyPosition()">
+	<div class="app-tooltip-content" [innerHTML]="tooltipText"></div>
 </div>

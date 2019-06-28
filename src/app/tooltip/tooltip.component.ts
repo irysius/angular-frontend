@@ -1,5 +1,5 @@
-import { Component, OnInit, HostListener } from '@angular/core';
-import { ISize } from '../helpers/TooltipHelper';
+import { Component, OnInit, HostListener, Input } from '@angular/core';
+import { ISize, IPosition } from '../helpers/TooltipHelper';
 
 @Component({
   selector: 'app-tooltip',
@@ -10,6 +10,8 @@ export class TooltipComponent implements OnInit {
 
   constructor() { }
 
+  @Input() tooltipText: string = 'This is a tooltip';
+
   ngOnInit() {
   }
 
@@ -17,6 +19,20 @@ export class TooltipComponent implements OnInit {
     return {
       width: window.innerWidth,
       height: window.innerHeight
+    };
+  }
+
+  tooltipClassList() {
+    return ['app-tooltip', 'below'];
+  }
+  bodyPosition() {
+    return {
+      top: '50px', left: '50px'
+    };
+  }
+  arrowPosition() {
+    return {
+      top: '0px', left: '0px'
     };
   }
 
