@@ -1,0 +1,35 @@
+.app-tooltip
+  position: absolute
+  color: white
+  background: black
+  text-align: center
+  border-radius: 6px
+  min-width: 150px
+  max-width: 450px
+
+.app-tooltip.above::after
+  content: ''
+  position: absolute
+  top: 100%
+  left: 50%
+  margin-left: -8px
+  width: 0
+  height: 0
+  border-top: 8px solid black
+  border-right: 8px solid transparent
+  border-left: 8px solid transparent
+
+.app-tooltip.below::before
+  content: ''
+  position: absolute
+  top: -8px
+  left: 50%
+  margin-left: -8px
+  width: 0
+  height: 0
+  border-bottom: 8px solid black
+  border-right: 8px solid transparent
+  border-left: 8px solid transparent
+
+.app-tooltip-content
+  padding: 5px
