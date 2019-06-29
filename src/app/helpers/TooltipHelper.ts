@@ -4,6 +4,7 @@ export interface IParameters {
 	hostBounds: ClientRect;
 	tooltipBounds: ClientRect;
 	windowSize: ISize;
+	windowScroll: IPosition;
 }
 export interface ISize {
 	width: number;
@@ -30,8 +31,12 @@ export interface ITooltipPositions {
  */
 export function calculateTooltipPositions(params: IParameters): ITooltipPositions {
 	const {
-		hostBounds, tooltipBounds, windowSize
+		hostBounds, tooltipBounds, windowSize, windowScroll
 	} = params;
+
+	if (hostBounds == null || tooltipBounds == null || windowSize == null) {
+		return null;
+	}
 
 	// Prefer tooltips to be above the host
 	let placement = TooltipPlacement.Above;
@@ -56,10 +61,10 @@ export function calculateTooltipPositions(params: IParameters): ITooltipPosition
 
 	return {
 		body: {
-			top: bodyTop, left: bodyLeft
+			top: bodyTop + windowScroll.top, left: bodyLeft
 		},
 		arrow: {
-			top: arrowTop, left: arrowLeft
+			top: arrowTop + windowScroll.top, left: arrowLeft
 		},
 		placement
 	};
