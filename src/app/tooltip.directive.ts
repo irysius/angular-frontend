@@ -6,14 +6,15 @@ import { TooltipService } from './tooltip.service';
 })
 export class TooltipDirective {
 
-  @Input() tooltipText: string = '';
+  @Input() title: string = '';
 
   constructor(private host: ElementRef, private tooltipService: TooltipService) {
+    
   }
 
   @HostListener('click')
   onClick(): void {
-    this.tooltipService.toggle(this.host, this.tooltipText);
+    this.tooltipService.toggle(this.host, this.title);
     event.stopPropagation();
   }
 }
