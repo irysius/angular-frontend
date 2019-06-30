@@ -21,6 +21,7 @@ export class TooltipService {
       // Hide tooltip
       this.activeHost = null;
     } else {
+      // Set the active host (can only have one at a time)
       this.activeHost = host;
       this.tooltipComponent.tooltipText = text;
     }
@@ -30,6 +31,8 @@ export class TooltipService {
   }
 
   update() {
+    // Grab the boundaries of the active host, the window, 
+    // and the tooltip in preparation for rendering calculations.
     const hostBounds = this.activeHost != null
       ? this.activeHost.nativeElement.getBoundingClientRect()
       : null;

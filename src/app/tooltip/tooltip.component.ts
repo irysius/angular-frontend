@@ -13,7 +13,7 @@ export class TooltipComponent implements OnInit {
 
   }
 
-  @Input() tooltipText: string = 'This is a tooltip';
+  @Input() tooltipText: string = 'Default tooltip';
   @ViewChild('container', { read: ElementRef, static: true }) container;
 
   ngOnInit() {
@@ -21,7 +21,6 @@ export class TooltipComponent implements OnInit {
   }
 
   tooltipClassList: string[] = ['app-tooltip', 'hidden'];
-
   bodyPosition: Record<string, any> = {};
   arrowPosition: Record<string, any> = {};
 
@@ -48,10 +47,12 @@ export class TooltipComponent implements OnInit {
 
   update(tooltipPositions: ITooltipPositions) {
     if (tooltipPositions == null) {
+      // Hide the tooltip
       this.tooltipClassList = [
         'app-tooltip', 'hidden'
       ];
     } else {
+      // Set tooltip positions based on provided values
       const { body, arrow, placement } = tooltipPositions;
       this.bodyPosition = {
         top: `${body.top}px`,
