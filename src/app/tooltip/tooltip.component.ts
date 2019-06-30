@@ -20,7 +20,7 @@ export class TooltipComponent implements OnInit {
     this.tooltipService.registerTooltip(this);
   }
 
-  tooltipClassList: string[] = ['app-tooltip'];
+  tooltipClassList: string[] = ['app-tooltip', 'hidden'];
 
   bodyPosition: Record<string, any> = {};
   arrowPosition: Record<string, any> = {};
@@ -37,10 +37,20 @@ export class TooltipComponent implements OnInit {
   onWindowClick(): void {
     this.tooltipService.dismiss();
   }
+  @HostListener('click')
+  onClick(): void {
+    event.stopPropagation();
+  }
+  @HostListener('document:keydown.escape') 
+  onEscapePress() {
+    this.tooltipService.dismiss();
+  }
 
   update(tooltipPositions: ITooltipPositions) {
     if (tooltipPositions == null) {
-      console.log('need to hide tooltip');
+      this.tooltipClassList = [
+        'app-tooltip', 'hidden'
+      ];
     } else {
       const { body, arrow, placement } = tooltipPositions;
       this.bodyPosition = {

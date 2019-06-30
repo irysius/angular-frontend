@@ -16,20 +16,24 @@ export class TooltipService {
     this.tooltipComponent = cmp;
   }
 
-  toggle(host: ElementRef) {
+  toggle(host: ElementRef, text: string) {
     if (this.activeHost === host) {
       // Hide tooltip
       this.activeHost = null;
     } else {
       this.activeHost = host;
+      this.tooltipComponent.tooltipText = text;
     }
-    this.update();
+    setTimeout(() => {
+      this.update();
+    });
   }
 
   update() {
     const hostBounds = this.activeHost != null
       ? this.activeHost.nativeElement.getBoundingClientRect()
       : null;
+
     const windowSize = this.tooltipComponent.windowSize();
     const windowScroll = this.tooltipComponent.windowScroll();
     const tooltipBounds = this.tooltipComponent.getBoundingClientRect();
