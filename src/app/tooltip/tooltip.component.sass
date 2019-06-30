@@ -11,11 +11,9 @@
   opacity: 0
   pointer-events: none
 
-.app-tooltip.above::after
+.app-tooltip.above .app-tooltip-arrow
   content: ''
   position: absolute
-  top: 100%
-  left: 50%
   margin-left: -8px
   width: 0
   height: 0
@@ -23,11 +21,9 @@
   border-right: 8px solid transparent
   border-left: 8px solid transparent
 
-.app-tooltip.below::before
+.app-tooltip.below .app-tooltip-arrow
   content: ''
   position: absolute
-  top: -8px
-  left: 50%
   margin-left: -8px
   width: 0
   height: 0

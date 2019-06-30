@@ -41,10 +41,10 @@ export function calculateTooltipPositions(params: IParameters): ITooltipPosition
 	// Prefer tooltips to be above the host
 	let placement = TooltipPlacement.Above;
 	let bodyTop = hostBounds.top - tooltipBounds.height - ARROW_DIM;
-	let arrowTop = hostBounds.top - ARROW_DIM;
+	let arrowTop = tooltipBounds.height;
 	if (bodyTop < 0) {
 		bodyTop = hostBounds.bottom + ARROW_DIM;
-		arrowTop = hostBounds.bottom;
+		arrowTop = -ARROW_DIM;
 		placement = TooltipPlacement.Below;
 	}
 
@@ -57,14 +57,14 @@ export function calculateTooltipPositions(params: IParameters): ITooltipPosition
 	}
 	
 	// Prefer arrows to be centered on the host
-	const arrowLeft = hostBounds.left + (hostBounds.width / 2) - (ARROW_DIM / 2);
+	const arrowLeft = hostBounds.left + (hostBounds.width / 2) - bodyLeft;
 
 	return {
 		body: {
 			top: bodyTop + windowScroll.top, left: bodyLeft
 		},
 		arrow: {
-			top: arrowTop + windowScroll.top, left: arrowLeft
+			top: arrowTop, left: arrowLeft
 		},
 		placement
 	};
