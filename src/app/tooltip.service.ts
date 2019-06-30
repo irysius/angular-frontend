@@ -33,13 +33,14 @@ export class TooltipService {
     const hostBounds = this.activeHost != null
       ? this.activeHost.nativeElement.getBoundingClientRect()
       : null;
-
     const windowSize = this.tooltipComponent.windowSize();
     const windowScroll = this.tooltipComponent.windowScroll();
     const tooltipBounds = this.tooltipComponent.getBoundingClientRect();
+
     const tooltipPositions = calculateTooltipPositions({
       windowSize, windowScroll, hostBounds, tooltipBounds
     });
+    
     this.tooltipComponent.update(tooltipPositions);
   }
 
